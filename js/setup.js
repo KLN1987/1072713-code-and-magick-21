@@ -10,11 +10,11 @@ userDialog.classList.remove(`hidden`);
 let similarListElement = document.querySelector(`.setup-similar-list`);
 let similarWizardTemplate = document.querySelector(`#similar-wizard-template`).content.querySelector(`.setup-similar-item`);
 
-let getRandomElement = function (arr) {
+const getRandomElement = function (arr) {
   return Math.floor(Math.random() * arr.length);
 };
 
-let wizards = [];
+const wizards = [];
 for (let i = 0; i < 4; i++) {
   let anotheWizards = {
     name: WIZARD_NAMES[getRandomElement(WIZARD_NAMES)] + ` ` + WIZARD_SURNAMES[getRandomElement(WIZARD_SURNAMES)],
@@ -24,7 +24,7 @@ for (let i = 0; i < 4; i++) {
   wizards.push(anotheWizards);
 }
 
-let renderWizard = function (wizard) {
+const renderWizard = function (wizard) {
   let wizardElement = similarWizardTemplate.cloneNode(true);
 
   wizardElement.querySelector(`.setup-similar-label`).textContent = wizard.name;
