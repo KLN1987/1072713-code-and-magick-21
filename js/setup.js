@@ -6,20 +6,20 @@ const EYES_COLORS = [`black`, `red`, `blue`, `yellow`, `green`];
 const MIN_NAME_LENGTH = 2;
 const MAX_NAME_LENGTH = 25;
 const SUM_CHRACTER = 4;
-const ESC_KEY = 'Escape';
-const ENTER_KEY = 'Enter';
-const FIREBALL_COLOR = ['#ee4830', '#30a8ee', '#5ce6c0', '#e848d5', '#e6e848'];
-const setup = document.querySelector('.setup');
-const setupOpen = document.querySelector('.setup-open');
-const setupClose = setup.querySelector('.setup-close');
-const setupWizard = document.querySelector('.setup-wizard');
-const setupColorCoat = setupWizard.querySelector('.wizard-coat');
-const setupColorEyes = setupWizard.querySelector('.wizard-eyes');
-const setupFireballWrap = document.querySelector('.setup-fireball-wrap');
-const setupColorCoatInput = document.querySelector('input[name="coat-color"]');
-const setupColorEyesInput = document.querySelector('input[name="eyes-color"]');
-const setupFireballWrapInput = document.querySelector('input[name="fireball-color"]');
-const userNameInput = document.querySelector('.setup-user-name');
+const ESC_KEY = `Escape`;
+const ENTER_KEY = `Enter`;
+const FIREBALL_COLOR = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
+const setup = document.querySelector(`.setup`);
+const setupOpen = document.querySelector(`.setup-open`);
+const setupClose = setup.querySelector(`.setup-close`);
+const setupWizard = document.querySelector(`.setup-wizard`);
+const setupColorCoat = setupWizard.querySelector(`.wizard-coat`);
+const setupColorEyes = setupWizard.querySelector(`.wizard-eyes`);
+const setupFireballWrap = document.querySelector(`.setup-fireball-wrap`);
+const setupColorCoatInput = document.querySelector(`input[name="coat-color"]`);
+const setupColorEyesInput = document.querySelector(`input[name="eyes-color"]`);
+const setupFireballWrapInput = document.querySelector(`input[name="fireball-color"]`);
+const userNameInput = document.querySelector(`.setup-user-name`);
 
 const userDialog = document.querySelector(`.setup`);
 // userDialog.classList.remove(`hidden`);
@@ -67,63 +67,63 @@ const onPopupEscPress = function (evt) {
 };
 
 const openPopup = function () {
-  setup.classList.remove('hidden');
-  document.addEventListener('keydown', onPopupEscPress);
+  setup.classList.remove(`hidden`);
+  document.addEventListener(`keydown`, onPopupEscPress);
 };
 
 const closePopup = function () {
-  setup.classList.add('hidden');
-  document.removeEventListener('keydown', onPopupEscPress);
+  setup.classList.add(`hidden`);
+  document.removeEventListener(`keydown`, onPopupEscPress);
 };
 
-setupOpen.addEventListener('click', function () {
+setupOpen.addEventListener(`click`, function () {
   openPopup();
 });
 
-setupOpen.addEventListener('keydown', function (evt) {
+setupOpen.addEventListener(`keydown`, function (evt) {
   if (evt.key === ENTER_KEY) {
     openPopup();
   }
 });
 
-setupClose.addEventListener('click', function () {
+setupClose.addEventListener(`click`, function () {
   closePopup();
 });
 
-setupClose.addEventListener('keydown', function (evt) {
+setupClose.addEventListener(`keydown`, function (evt) {
   if (evt.key === ENTER_KEY) {
     closePopup();
   }
 });
 
-setupColorCoat.addEventListener('click', function () {
+setupColorCoat.addEventListener(`click`, function () {
   const randomColorCoat = COAT_COLOR[getRandomElement(COAT_COLOR)];
   setupColorCoat.style.fill = randomColorCoat;
   setupColorCoatInput.value = randomColorCoat;
 });
 
-setupColorEyes.addEventListener('click', function () {
+setupColorEyes.addEventListener(`click`, function () {
   const randomColorEyes = EYES_COLORS[getRandomElement(EYES_COLORS)];
   setupColorEyes.style.fill = randomColorEyes;
   setupColorEyesInput.value = randomColorEyes;
 });
 
-setupFireballWrap.addEventListener('click', function () {
+setupFireballWrap.addEventListener(`click`, function () {
   const randomFireballColor = FIREBALL_COLOR[getRandomElement(FIREBALL_COLOR)];
   setupFireballWrap.style.backgroundColor = randomFireballColor;
   setupFireballWrapInput.value = randomFireballColor;
 });
 
 // валидация формы данных персонажа
-userNameInput.addEventListener('input', function () {
+userNameInput.addEventListener(`input`, function () {
   const valueLength = userNameInput.value.length;
 
   if (valueLength < MIN_NAME_LENGTH) {
-    userNameInput.setCustomValidity('Ещё ' + (MIN_NAME_LENGTH - valueLength) + ' симв.');
+    userNameInput.setCustomValidity(`Ещё ` + (MIN_NAME_LENGTH - valueLength) + ` симв.`);
   } else if (valueLength > MAX_NAME_LENGTH) {
-    userNameInput.setCustomValidity('Удалите лишние ' + (valueLength - MAX_NAME_LENGTH) + ' симв.');
+    userNameInput.setCustomValidity(`Удалите лишние ` + (valueLength - MAX_NAME_LENGTH) + ` симв.`);
   } else {
-    userNameInput.setCustomValidity('');
+    userNameInput.setCustomValidity(``);
   }
   userNameInput.reportValidity();
 });
