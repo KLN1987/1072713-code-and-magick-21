@@ -76,6 +76,20 @@ const closePopup = function () {
   document.removeEventListener(`keydown`, onPopupEscPress);
 };
 
+// валидация формы данных персонажа
+const validationInput = function (item) {
+  const valueLength = item.value.length;
+
+  if (valueLength < MIN_NAME_LENGTH) {
+    item.setCustomValidity(`Ещё ` + (MIN_NAME_LENGTH - valueLength) + ` симв.`);
+  } if (valueLength > MAX_NAME_LENGTH) {
+    item.setCustomValidity(`Удалите лишние ` + (valueLength - MAX_NAME_LENGTH) + ` симв.`);
+  } else {
+    item.setCustomValidity(``);
+  }
+  item.reportValidity();
+};
+
 setupOpen.addEventListener(`click`, function () {
   openPopup();
 });
@@ -114,16 +128,4 @@ setupFireballWrap.addEventListener(`click`, function () {
   setupFireballWrapInput.value = randomFireballColor;
 });
 
-// валидация формы данных персонажа
-userNameInput.addEventListener(`input`, function () {
-  const valueLength = userNameInput.value.length;
-
-  if (valueLength < MIN_NAME_LENGTH) {
-    userNameInput.setCustomValidity(`Ещё ` + (MIN_NAME_LENGTH - valueLength) + ` симв.`);
-  } else if (valueLength > MAX_NAME_LENGTH) {
-    userNameInput.setCustomValidity(`Удалите лишние ` + (valueLength - MAX_NAME_LENGTH) + ` симв.`);
-  } else {
-    userNameInput.setCustomValidity(``);
-  }
-  userNameInput.reportValidity();
-});
+userNameInput.addEventListener(`input`, validationInput(userNameInput));
